@@ -1,9 +1,9 @@
 ---
-version: '3'
+version: '3.8'
 
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:6.0.0
+    image: confluentinc/cp-zookeeper:${CONF_VER}
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -13,7 +13,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
-    image: confluentinc/cp-enterprise-kafka:6.0.0
+    image: confluentinc/cp-enterprise-kafka:${CONF_VER}
     hostname: kafka
     container_name: kafka
     depends_on:
@@ -31,7 +31,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.14.0
+    image: confluentinc/cp-ksqldb-server:${CONF_VER}
     hostname: ksqldb-server
     container_name: ksqldb-server
     command: ["ksql-server-start", "ksql-server.properties"]
@@ -44,9 +44,9 @@ services:
       - ./files/ksqldb-server:/etc/ksqldb-server
 
   # log into the CLI by running:
-  # docker-compose exec ksqldb-cli ksql http://ksqldb-server:8088
+  # cd 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.14.0
+    image: confluentinc/cp-ksqldb-cli:${CONF_VER}
     container_name: ksqldb-cli
     depends_on:
       - kafka

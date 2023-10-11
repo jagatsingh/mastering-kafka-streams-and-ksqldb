@@ -2,7 +2,7 @@ plugins {
   id 'application'
 
   // https://plugins.gradle.org/plugin/com.github.sherter.google-java-format
-  id 'com.github.sherter.google-java-format' version '0.8'
+ // id 'com.github.sherter.google-java-format' version '0.9'
 
   // used for containerizing the app
   id 'com.google.cloud.tools.jib' version '2.1.0'
@@ -15,7 +15,7 @@ plugins {
 }
 
 ext {
-  kafkaVersion = '2.6.0'
+  kafkaVersion = '3.6.0'
   opencensusVersion = '0.26.0'
   simpleclientVersion = '0.6.0'
   prometheusJmxExporterVersion='0.14.0'
@@ -98,7 +98,7 @@ dependencies {
 
 // code formatting
 tasks.withType(JavaCompile).configureEach { javaCompile ->
-  javaCompile.dependsOn 'googleJavaFormat'
+  //javaCompile.dependsOn 'googleJavaFormat'
   options.encoding = 'UTF-8'
 }
 

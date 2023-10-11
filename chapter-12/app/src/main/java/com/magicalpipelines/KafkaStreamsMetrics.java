@@ -153,7 +153,7 @@ public class KafkaStreamsMetrics implements MetricsReporter {
     if (metric == null) {
       return 0.0;
     }
-    Double value = metric.value();
+    Double value = (Double) metric.metricValue();
     if (Double.isNaN(value)) {
       return 0.0;
     }
